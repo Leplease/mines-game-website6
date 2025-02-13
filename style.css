@@ -1,0 +1,81 @@
+/* Overall Page */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #2c3e50, #4b6cb7);
+  color: #fff;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header & Controls */
+.header {
+  width: 100%;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+.balance-display,
+.balance-controls,
+.bet-controls {
+  margin: 5px;
+}
+input[type="number"] {
+  padding: 8px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  width: 150px;
+  background: #333;
+  color: #fff;
+}
+button {
+  padding: 8px 12px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #28a745;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #218838;
+}
+
+/* Game Area */
+.game-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 80px);
+  grid-template-rows: repeat(5, 80px);
+  gap: 5px;
+}
+.cell {
+  width: 80px;
+  height: 80px;
+  background: #444;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.cell.revealed {
+  background: #555;
+}
+.cell.gem {
+  background: #2ecc71;
+}
+.cell.mine {
+  background: #e74c3c;
+}

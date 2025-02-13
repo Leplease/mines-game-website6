@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stake Mines Clone</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="header">
+    <div class="balance-display">
+      <span>Current Balance: $<span id="currentBalance">100.00</span></span>
+    </div>
+    <div class="balance-controls">
+      <input type="number" id="balanceInput" placeholder="Set Balance" value="100" />
+      <button id="setBalance">Set Balance</button>
+      <input type="number" id="addBalanceInput" placeholder="Add Balance" />
+      <button id="addBalanceBtn">Add Balance</button>
+    </div>
+    <div class="bet-controls">
+      <input type="number" id="betInput" placeholder="Bet Amount" />
+      <input type="number" id="mines" placeholder="Number of Mines" value="5" min="1" max="24" />
+      <button id="startGame">Start Game</button>
+      <button id="cashOut">Cash Out</button>
+      <div>Multiplier: <span id="multiplier">1.00x</span></div>
+    </div>
+  </div>
+  <div class="game-container">
+    <div class="grid" id="grid"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
