@@ -19,12 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let revealedCells = 0;
   const gridSize = 25;
 
-  // Update displayed balance
   function updateBalance() {
     currentBalanceText.textContent = balance.toFixed(2);
   }
 
-  // Set new balance
   setBalanceBtn.addEventListener("click", () => {
     let newBalance = parseFloat(balanceInput.value);
     if (newBalance > 0) {
@@ -33,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Add balance without affecting game state
   addBalanceBtn.addEventListener("click", () => {
     let addAmount = parseFloat(addBalanceInput.value);
     if (addAmount > 0) {
@@ -42,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Create the grid
   function createGrid() {
     grid.innerHTML = "";
     for (let i = 0; i < gridSize; i++) {
@@ -54,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Randomly place mines based on the user-chosen number
   function placeMines() {
     let mineCount = parseInt(minesInput.value);
     minePositions = [];
@@ -66,23 +61,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Compute the multiplier using an exponential formula
   function computeMultiplier(safeClicks, mineCount) {
-    // These parameters can be tweaked to adjust the progression
-    let baseIncrement = 0.03;           // Base increase per safe click
-    let mineFactor = 0.002 * mineCount;   // Additional factor per mine chosen
-    let factor = 1 + baseIncrement + mineFactor;
-    return Math.pow(factor, safeClicks);
+    let totalSafeCells = gridSize - mineCount;
+    return (1 + (mineCount / totalSafeCells)) ** safeClicks;
   }
 
-  // Update the multiplier display
   function updateMultiplier() {
     let mineCount = parseInt(minesInput.value);
     multiplier = computeMultiplier(revealedCells, mineCount);
     multiplierText.textContent = multiplier.toFixed(2) + "x";
   }
 
-  // Handle clicking on a cell
   function handleCellClick(cell) {
     if (!playing || cell.classList.contains("revealed")) return;
     cell.classList.add("revealed");
@@ -97,7 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // End the game: if won, cash out winnings; if lost, the bet is forfeited
   function endGame(won) {
     playing = false;
     if (won) {
@@ -106,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateBalance();
   }
 
-  // Start the game: deduct bet, reset state, create grid, and place mines
   startGameBtn.addEventListener("click", () => {
     betAmount = parseFloat(betInput.value);
     if (isNaN(betAmount) || betAmount <= 0) {
@@ -127,14 +114,12 @@ document.addEventListener("DOMContentLoaded", () => {
     placeMines();
   });
 
-  // Cash Out button: ends the game and applies winnings
   cashOutBtn.addEventListener("click", () => {
     if (playing) {
       endGame(true);
     }
   });
 
-  // Initialize display
   createGrid();
   updateBalance();
 });
